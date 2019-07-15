@@ -18,6 +18,9 @@ SELECT * FROM Customers WHERE City = 'London' OR City = 'Madrid' OR City = 'Braz
 
 ## Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
 
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+	VALUES('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth');
+
 ## Update Bilbo Baggins record so that the postal code changes to "11122"
 
 ## (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
