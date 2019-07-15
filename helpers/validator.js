@@ -6,7 +6,7 @@ module.exports = {
 
       const account = await acctModel.get(id);
       if(account[0] && account[0].name) {
-        req.account = account;
+        req.account = account[0];
         return next();
       }
       res.status(400).json({ message: 'Invalid account id' });
