@@ -14,4 +14,21 @@ module.exports = {
       res.status(500).json({ error: 'server error' });
     }
   },
+
+  validateAccount: async (req, res, next) => {
+    try {
+      const { name, budget } = req.body;
+
+      if(!name || name.trim() === '') {
+        return res.status(400).json({ message: 'Missing required name field'});
+      }
+      if(!budget || Number.isNaN(budget)) {
+        return res.status(400).json({ message: 'Missing or invalid required budget field'});
+      }
+
+      next();
+    } catch(error) {
+      res.status(500).json({ error: 'server error' });
+    }
+  },
 }
