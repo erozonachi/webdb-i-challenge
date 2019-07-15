@@ -18,7 +18,8 @@ module.exports = {
   update: (id, { name, budget }) => {
     return db('accounts')
       .where({ id })
-      .update({ name, budget }, ['id', 'name', 'budget']);
+      .update({ name, budget }, ['id', 'name', 'budget'])
+      .then(count => (count > 0 ? this.get(id) : null));
   },
 
   remove: (id) => {
