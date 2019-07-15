@@ -12,4 +12,10 @@ module.exports = {
     }
     return db('accounts');
   },
+
+  update: (id, { name, budget }) => {
+    return db('accounts')
+      .where({ id })
+      .update({ name, budget });
+  },
 };
