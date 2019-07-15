@@ -12,10 +12,17 @@ module.exports = {
 
   read: async (req, res) => {
     try {
+      const { limit, sortby, sortdir } = req.query;
+
       if(req.account) {
         return res.status(200).json(req.account);
       }
-      const accounts = await acctModel.get();
+      let accounts
+      if(limit && sortby && sortdir) {
+        accounts = await acctModel.get(null, limit, sortby, sortdir);
+      } else {
+        accounts = await acctModel.get();
+      }
 
       res.status(200).json(accounts);
     } catch(error) {
