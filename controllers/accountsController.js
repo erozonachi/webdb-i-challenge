@@ -31,4 +31,13 @@ module.exports = {
       res.status(500).json({ error: 'server error' });
     }
   },
+
+  delete: async (req, res) => {
+    try {
+      await acctModel.remove(req.account.id);
+      res.status(200).json({ message: 'Delete successful' });
+    } catch(error) {
+      res.status(500).json({ error: 'server error' });
+    }
+  },
 }
