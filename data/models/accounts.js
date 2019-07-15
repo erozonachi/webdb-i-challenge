@@ -7,12 +7,14 @@ module.exports = {
     .then(([id]) => this.get(id));
   },
 
-  get: function (id = null) {
+  get: function (id = null, limit = 50, sortby = 'id', sortdir = 'asc') {
     if(id) {
       return db('accounts')
         .where({ id });
     }
-    return db('accounts');
+    return db('accounts')
+      .orderBy(sortby, sortdir)
+      .limit(limit);
   },
 
   update: function (id, { name, budget }) {
