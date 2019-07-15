@@ -9,4 +9,17 @@ module.exports = {
       res.status(500).json({ error: 'server error' });
     }
   },
+
+  read: async (req, res) => {
+    try {
+      if(req.account) {
+        return res.status(200).json(req.account);
+      }
+      const accounts = await acctModel.get();
+
+      res.status(200).json(accounts);
+    } catch(error) {
+      res.status(500).json({ error: 'server error' });
+    }
+  },
 }
