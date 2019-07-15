@@ -16,7 +16,7 @@ module.exports = {
   update: (id, { name, budget }) => {
     return db('accounts')
       .where({ id })
-      .update({ name, budget });
+      .update({ name, budget }, ['id', 'name', 'budget']);
   },
 
   remove: (id) => {

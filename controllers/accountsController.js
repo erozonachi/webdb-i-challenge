@@ -22,4 +22,13 @@ module.exports = {
       res.status(500).json({ error: 'server error' });
     }
   },
+
+  update: async (req, res) => {
+    try {
+      const account = await acctModel.update(req.account.id, req.body);
+      res.status(200).json(account[0]);
+    } catch(error) {
+      res.status(500).json({ error: 'server error' });
+    }
+  },
 }
