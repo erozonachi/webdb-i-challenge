@@ -1,13 +1,13 @@
 const db = require('../dbConfig');
 
 module.exports = {
-  insert: ({ name, budget }) => {
+  insert: function ({ name, budget }) {
     return db('accounts')
-    .insert({ name, budget }, ['id', 'name', 'budget'])
+    .insert({ name, budget })
     .then(([id]) => this.get(id));
   },
 
-  get: (id = null) => {
+  get: function (id = null) {
     if(id) {
       return db('accounts')
         .where({ id });
@@ -15,14 +15,14 @@ module.exports = {
     return db('accounts');
   },
 
-  update: (id, { name, budget }) => {
+  update: function (id, { name, budget }) {
     return db('accounts')
       .where({ id })
-      .update({ name, budget }, ['id', 'name', 'budget'])
+      .update({ name, budget })
       .then(count => (count > 0 ? this.get(id) : null));
   },
 
-  remove: (id) => {
+  remove: function (id) {
     return db('accounts')
       .where({ id })
       .del();
