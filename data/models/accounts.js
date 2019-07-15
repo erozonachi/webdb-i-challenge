@@ -18,4 +18,10 @@ module.exports = {
       .where({ id })
       .update({ name, budget });
   },
+
+  remove: (id) => {
+    return db('accounts')
+      .where({ id })
+      .del();
+  },
 };
